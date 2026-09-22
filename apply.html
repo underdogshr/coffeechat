@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>underdogs. 커피챗 신청</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+:root{--accent:#F05519;--ink:#111111;--paper:#ffffff;--muted:#444444;--line:#CFCBC5;--sand:#F6F4F1;--err:#C2410C;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,p{margin:0}
+a{color:inherit}
+main{padding:64px max(20px,calc((100% - 760px)/2)) 120px}
+.back{display:inline-block;color:#555;text-decoration:none;font-size:15px;font-weight:500;margin-bottom:28px}
+.back:hover{color:var(--ink)}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:Poppins,sans-serif;font-size:14px;font-weight:600;letter-spacing:3px}
+.eyebrow i{width:10px;height:10px;background:var(--accent);display:inline-block}
+.head{display:flex;flex-direction:column;gap:14px;padding-bottom:40px;border-bottom:2px solid var(--ink);margin-bottom:48px}
+.head h1{font-size:clamp(36px,5vw,52px);line-height:1.2;font-weight:900;letter-spacing:-.03em}
+.head p{font-size:18px;line-height:1.7;color:var(--muted)}
+form{display:flex;flex-direction:column;gap:56px}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:16px;color:#333}
+.meta small{font-size:14px;color:#555}
+.req{color:var(--err)}
+.group{display:flex;flex-direction:column;gap:24px}
+.gh{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-top:20px;border-top:2px solid var(--ink)}
+.gh .n{font-family:Poppins,sans-serif;font-size:28px;font-weight:700;font-style:italic;color:var(--accent)}
+.gh .t{font-size:22px;font-weight:900;letter-spacing:-.02em}
+.gh .s{font-size:15px;color:#555}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.field{display:flex;flex-direction:column;gap:10px}
+.full{grid-column:1/-1}
+label.lb,.lb{font-size:15px;font-weight:700}
+.lb .opt{font-weight:400;color:#555}
+input[type=text],input[type=tel],input[type=email],input[type=url],textarea{width:100%;min-width:0;border:1px solid var(--ink);border-radius:0;background:#fff;font-family:inherit;font-size:16px;color:var(--ink)}
+input[type=text],input[type=tel],input[type=email],input[type=url]{height:52px;padding:0 16px}
+textarea{padding:14px 16px;line-height:1.6;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible,.file:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.choice{display:grid;gap:12px}
+.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.opt-btn{border:1px solid var(--ink);border-radius:0;background:#fff;color:var(--ink);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;transition:background-color .2s ease,transform .15s ease}
+.opt-btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.opt-btn[aria-checked=true],.opt-btn[aria-pressed=true]{background:var(--accent);border-width:2px;font-weight:700}
+.topic{min-height:108px;padding:20px;text-align:left;display:flex;flex-direction:column;gap:8px}
+.topic b{font-size:17px;line-height:1.4}
+.topic span{font-size:14px;line-height:1.5;color:#333}
+.pill{height:56px}
+.qbar{display:none;flex-direction:column;gap:10px;padding:20px;border-left:4px solid var(--accent);background:var(--sand);animation:open .25s ease}
+.qbar.on{display:flex}
+@keyframes open{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sched{position:relative;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dark-btn{height:52px;padding:0 22px;border:1px solid var(--ink);border-radius:0;background:var(--ink);color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:10px}
+.hint{font-size:15px;color:#555}
+.chip{height:44px;padding:0 14px;border:1px solid var(--ink);border-radius:0;background:var(--accent);color:var(--ink);font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px}
+.pop{display:none;position:absolute;top:64px;left:0;z-index:20;width:min(440px,calc(100vw - 40px));padding:24px;border:1px solid var(--ink);background:#fff;box-shadow:10px 10px 0 var(--ink);flex-direction:column;gap:14px}
+.pop.on{display:flex}
+.cal-head{display:flex;align-items:center;justify-content:space-between}
+.cal-head b{font-size:18px}
+.nav{width:40px;height:40px;border:1px solid var(--ink);border-radius:0;background:#fff;font-size:18px;cursor:pointer}
+.nav:disabled{opacity:.3;cursor:default}
+.dows,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.dows{font-size:13px;font-weight:700;color:#555;text-align:center}
+.day{height:46px;border:1px solid var(--line);border-radius:0;background:#fff;color:var(--ink);font-family:inherit;font-size:15px;cursor:pointer}
+.day:disabled{background:#EDEDED;border-color:#EDEDED;color:#9A9A9A;cursor:default}
+.day[aria-pressed=true]{background:var(--accent);border-color:var(--ink);font-weight:700}
+.pop small{font-size:13px;line-height:1.5;color:#555}
+.done-btn{height:48px;border:0;border-radius:0;background:var(--ink);color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer}
+.file{height:52px;padding:0 16px;display:flex;align-items:center;gap:10px;border:1px dashed var(--ink);background:#fff;font-size:15px;color:#333;cursor:pointer;position:relative;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.policy{border:1px solid var(--ink);background:var(--sand);padding:20px 22px;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.65;color:#333}
+.policy b{color:var(--ink)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.6;cursor:pointer}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--ink);flex-shrink:0}
+.err{display:none;padding:16px 20px;border:1px solid var(--err);background:#FFF4EE;font-size:15px;line-height:1.6}
+.err.on{display:block}
+.submit{height:72px;border:0;border-radius:0;background:var(--ink);color:#fff;font-family:inherit;font-size:20px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:transform .18s ease,box-shadow .18s ease}
+.submit:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--accent)}
+.done{display:none;padding:72px 56px;border:1px solid var(--ink);flex-direction:column;align-items:flex-start;gap:24px}
+.done.on{display:flex}
+.done .big{font-family:Poppins,sans-serif;font-size:clamp(48px,8vw,72px);line-height:1;font-weight:700;font-style:italic;color:var(--accent)}
+.done h2{font-size:30px;font-weight:900;letter-spacing:-.02em}
+.done p{font-size:17px;line-height:1.75;color:#333}
+.ghost{height:56px;padding:0 28px;border:1px solid var(--ink);border-radius:0;background:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+footer{background:var(--ink);color:#fff;padding:40px max(20px,calc((100% - 1280px)/2));display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+footer .logo{font-family:Poppins,sans-serif;font-weight:700;font-size:22px}
+footer .logo b{color:var(--accent)}
+footer small{font-size:14px;color:#CFCFCF}
+footer a{color:#fff}
+@media (max-width:640px){
+  main{padding-top:40px}
+  .row,.c3,.c2{grid-template-columns:1fr}
+  .done{padding:48px 24px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="index.html">← 커피챗 소개로 돌아가기</a>
+<div class="head">
+<div class="eyebrow"><i></i><span>COFFEE CHAT</span></div>
+<h1>커피챗 신청</h1>
+<p>30분~1시간, 온라인(Zoom) 또는 오프라인(대면)으로 편하게 이야기 나눠요.</p>
+</div>
+
+<section class="done" id="done" aria-live="polite">
+<span class="big">Nice act.</span>
+<h2>커피챗 신청이 접수됐어요.</h2>
+<p>남겨주신 내용 확인 후 일정을 안내드릴게요.<br>첫 연락까지 며칠 걸릴 수 있는 점 양해 부탁드립니다.</p>
+<a class="ghost" href="index.html">커피챗 소개로 돌아가기</a>
+</section>
+
+<form id="f" novalidate action="https://formsubmit.co/hr@udimpact.ai" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="_subject" id="h_subject" value="[커피챗 신청]">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" id="h_next" value="">
+<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+<input type="hidden" name="나누고 싶은 이야기" id="h_topic">
+<input type="hidden" name="담당 셀" id="h_cell">
+<input type="hidden" name="가능한 일정" id="h_dates">
+<input type="hidden" name="선호 시간대" id="h_times">
+<input type="hidden" name="선호 방식" id="h_mode">
+<input type="hidden" name="개인정보 수집·이용 동의" id="h_agree">
+<input type="hidden" name="인재풀 등록 동의" id="h_pool">
+<div class="meta"><span>5개 항목만 채우면 끝나요.</span><small><span class="req">*</span> 필수 입력</small></div>
+
+<div class="group">
+<div class="gh"><span class="n">01</span><span class="t">기본 정보</span></div>
+<div class="row">
+<div class="field"><label class="lb" for="name">이름<span class="req"> *</span></label><input id="name" name="이름" type="text" autocomplete="name" placeholder="이름"></div>
+<div class="field"><label class="lb" for="phone">연락처<span class="req"> *</span></label><input id="phone" name="연락처" type="tel" autocomplete="tel" placeholder="010-0000-0000"></div>
+<div class="field full"><label class="lb" for="email">이메일<span class="req"> *</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="example@email.com"></div>
+</div>
+<div class="field"><label class="lb" for="intro">간단한 자기소개<span class="req"> *</span></label><textarea id="intro" name="자기소개" rows="3" placeholder="경력, 직군, 현재 하는 일, 구직 중 여부를 알려주세요."></textarea></div>
+</div>
+
+<div class="group">
+<div class="gh"><span class="n">02</span><span class="t">나누고 싶은 이야기</span><span class="s">하나를 고르면 질문을 남길 수 있어요</span></div>
+<span class="lb" id="topicLb">궁금한 점, 나누고 싶은 이야기<span class="req"> *</span></span>
+<div class="choice c3" role="radiogroup" aria-labelledby="topicLb" id="topics"></div>
+<div class="qbar" id="qbar"><label class="lb" for="question" id="qlabel"></label><textarea id="question" name="질문" rows="3"></textarea></div>
+</div>
+
+<div class="group">
+<div class="gh"><span class="n">03</span><span class="t">일정과 방식</span></div>
+<span class="lb">가능한 일정<span class="req"> *</span><span class="opt"> (최대 3일)</span></span>
+<div class="sched">
+<button type="button" class="dark-btn" id="calBtn" aria-haspopup="dialog" aria-expanded="false"><span aria-hidden="true">📅</span> 일정 선택하기</button>
+<span class="hint" id="noSel">선택한 날짜가 여기에 표시돼요.</span>
+<span id="chips" style="display:contents"></span>
+<div class="pop" id="pop" role="dialog" aria-label="가능한 날짜 선택">
+<div class="cal-head"><button type="button" class="nav" id="prev" aria-label="이전 달">‹</button><b id="mLabel"></b><button type="button" class="nav" id="next" aria-label="다음 달">›</button></div>
+<div class="dows"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+<div class="days" id="days"></div>
+<small>회색 날짜(주말·공휴일)는 선택할 수 없어요. <span id="cnt"></span></small>
+<button type="button" class="done-btn" id="closeCal">선택 완료</button>
+</div>
+</div>
+<span class="lb">선호 시간대<span class="req"> *</span><span class="opt"> (복수 선택)</span></span>
+<div class="choice c3" id="slots"></div>
+<span class="lb" id="modeLb">선호하는 방식<span class="req"> *</span></span>
+<div class="choice c2" role="radiogroup" aria-labelledby="modeLb" id="modes"></div>
+</div>
+
+<div class="group">
+<div class="gh"><span class="n">04</span><span class="t">이력서·프로필</span></div>
+<div class="row">
+<div class="field"><label class="lb" for="resume">이력서<span class="req"> *</span></label><label class="file"><span aria-hidden="true">↑</span> <span id="fileLb">파일 선택하기 (PDF 권장)</span><input id="resume" name="attachment" type="file" accept=".pdf,.doc,.docx"></label></div>
+<div class="field"><label class="lb" for="link">프로필 링크<span class="opt"> (선택)</span></label><input id="link" name="프로필 링크" type="url" placeholder="https:// 링크드인, 포트폴리오 등"></div>
+</div>
+</div>
+
+<div class="group">
+<div class="gh"><span class="n">05</span><span class="t">개인정보 수집·이용 동의</span></div>
+<div class="policy">
+<span><b>수집 항목</b> · 이름, 연락처, 이메일, 이력서, 프로필 링크, 신청서 작성 내용</span>
+<span><b>수집 목적</b> · 커피챗 일정 안내 및 진행, 신청자 확인</span>
+<span><b>처리 위탁·국외 이전</b> · 신청서는 메일 전송 서비스 FormSubmit(미국)을 거쳐 hr@udimpact.ai로 전달됩니다.</span>
+<span><b>보유 기간</b> · [보유기간 입력] 후 지체 없이 파기 (삭제 요청 시 즉시 파기)</span>
+<span style="color:#555">동의를 거부할 수 있으나, 거부 시 커피챗 신청이 제한됩니다.</span>
+</div>
+<label class="check"><input type="checkbox" id="agree"><span><b>[필수]</b> 위 개인정보 수집·이용에 동의합니다.</span></label>
+<label class="check" style="color:#333"><input type="checkbox" id="pool"><span><b>[선택]</b> 향후 채용 포지션 안내를 위해 인재풀 등록 및 연락에 동의합니다.</span></label>
+</div>
+
+<div class="err" id="err" role="alert"></div>
+<button type="submit" class="submit">커피챗 신청하기 <span aria-hidden="true">↗</span></button>
+</form>
+</main>
+
+<footer>
+<div style="display:flex;flex-direction:column;gap:10px"><span class="logo">underdogs<b>.</b></span><small>주식회사 유디임팩트 · 사업자등록번호 693-88-00061</small></div>
+<small>커피챗 문의 <a href="mailto:hr@udimpact.ai">hr@udimpact.ai</a></small>
+</footer>
+
+<script>
+(function(){
+  var TO='hr@udimpact.ai';
+  var st={topic:null,sel:[],times:[],mode:null,file:null,fileSize:0};
+  var $=function(id){return document.getElementById(id)};
+
+  // topics
+  var TOPICS=[
+    {id:'brand',label:'브랜드·크리에이티브 이야기',who:'Brand Cell과 이야기해요',cell:'Brand Cell',prompt:'브랜드·크리에이티브에 대해 궁금한 점을 적어주세요 (선택)',ph:'예) 언더독스 브랜드 캠페인은 어떻게 기획되나요?'},
+    {id:'people',label:'조직문화·일하는 방식·커리어 이야기',who:'People Cell과 이야기해요',cell:'People Cell',prompt:'조직문화·일하는 방식·커리어에 대해 궁금한 점을 적어주세요 (선택)',ph:'예) Act-preneur로 일한다는 건 실제로 어떤 모습인가요?'},
+    {id:'unsure',label:'아직 잘 모르겠어요',who:'People Cell이 함께 찾아드려요',cell:'People Cell',prompt:'지금 고민 중인 것, 무엇이든 편하게 적어주세요 (선택)',ph:'예) 제 경험이 언더독스의 어떤 일과 맞을지 궁금해요.'}
+  ];
+  TOPICS.forEach(function(t){
+    var b=document.createElement('button');b.type='button';b.className='opt-btn topic';b.setAttribute('role','radio');b.setAttribute('aria-checked','false');
+    var bb=document.createElement('b');bb.textContent=t.label;var sp=document.createElement('span');sp.textContent=t.who;b.appendChild(bb);b.appendChild(sp);
+    b.onclick=function(){st.topic=t.id;[].forEach.call($('topics').children,function(x){x.setAttribute('aria-checked','false')});b.setAttribute('aria-checked','true');
+      $('qlabel').textContent=t.prompt;$('question').placeholder=t.ph;$('qbar').classList.add('on');};
+    $('topics').appendChild(b);
+  });
+
+  // slots & modes
+  function toggles(el,list,multi){
+    list.forEach(function(o){
+      var b=document.createElement('button');b.type='button';b.className='opt-btn pill';b.textContent=o.label;
+      if(multi){b.setAttribute('aria-pressed','false');b.onclick=function(){var i=st.times.indexOf(o.id);if(i<0)st.times.push(o.id);else st.times.splice(i,1);b.setAttribute('aria-pressed',i<0?'true':'false');};}
+      else{b.setAttribute('role','radio');b.setAttribute('aria-checked','false');b.onclick=function(){st.mode=o.id;[].forEach.call(el.children,function(x){x.setAttribute('aria-checked','false')});b.setAttribute('aria-checked','true');};}
+      o.el=b;el.appendChild(b);
+    });
+  }
+  var SLOTS=[{id:'오전 10–12시',label:'오전 10–12시'},{id:'오후 2–5시',label:'오후 2–5시'},{id:'저녁 6–8시',label:'저녁 6–8시'}];
+  var MODES=[{id:'온라인(Zoom)',label:'온라인 (Zoom)'},{id:'오프라인(대면)',label:'오프라인 (대면)'}];
+  toggles($('slots'),SLOTS,true);toggles($('modes'),MODES,false);
+
+  // calendar
+  var HOLI=['2026-01-01','2026-02-16','2026-02-17','2026-02-18','2026-03-02','2026-05-01','2026-05-05','2026-05-25','2026-06-03','2026-07-17','2026-08-17','2026-09-24','2026-09-25','2026-09-26','2026-10-03','2026-10-05','2026-10-09','2026-12-25'];
+  var DOW=['일','월','화','수','목','금','토'];
+  var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var minD=new Date(today);minD.setDate(minD.getDate()+1);
+  var maxD=new Date(today.getFullYear(),11,31);if(maxD<minD){maxD=new Date(minD);maxD.setDate(maxD.getDate()+30);}
+  var vy=minD.getFullYear(),vm=minD.getMonth();
+  function pad(n){return n<10?'0'+n:''+n}
+  function key(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+  function lbl(k){var p=k.split('-'),d=new Date(+p[0],+p[1]-1,+p[2]);return (d.getMonth()+1)+'/'+d.getDate()+'('+DOW[d.getDay()]+')'}
+  function renderCal(){
+    $('mLabel').textContent=vy+'년 '+(vm+1)+'월';
+    var idx=vy*12+vm;$('prev').disabled=idx<=minD.getFullYear()*12+minD.getMonth();$('next').disabled=idx>=maxD.getFullYear()*12+maxD.getMonth();
+    var box=$('days');box.innerHTML='';var lead=new Date(vy,vm,1).getDay(),n=new Date(vy,vm+1,0).getDate();
+    for(var i=0;i<lead;i++){box.appendChild(document.createElement('span'))}
+    for(var dd=1;dd<=n;dd++){(function(dd){
+      var d=new Date(vy,vm,dd),k=key(d),w=d.getDay(),hol=HOLI.indexOf(k)>=0,dis=d<minD||d>maxD||w===0||w===6||hol,on=st.sel.indexOf(k)>=0;
+      var b=document.createElement('button');b.type='button';b.className='day';b.textContent=dd;b.disabled=dis;b.setAttribute('aria-pressed',on?'true':'false');
+      b.setAttribute('aria-label',(vm+1)+'월 '+dd+'일 '+DOW[w]+'요일'+(hol?' 공휴일':'')+(dis?' 선택 불가':''));
+      b.onclick=function(){var i=st.sel.indexOf(k);if(i>=0)st.sel.splice(i,1);else if(st.sel.length<3){st.sel.push(k);st.sel.sort();}renderCal();renderChips();};
+      box.appendChild(b);})(dd)}
+    $('cnt').textContent='('+st.sel.length+'/3 선택)';
+  }
+  function renderChips(){
+    var c=$('chips');c.innerHTML='';$('noSel').style.display=st.sel.length?'none':'';
+    st.sel.forEach(function(k){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=lbl(k)+' ×';b.setAttribute('aria-label',lbl(k)+' 선택 해제');
+      b.onclick=function(){st.sel.splice(st.sel.indexOf(k),1);renderChips();renderCal();};c.appendChild(b);});
+  }
+  function setPop(on){$('pop').classList.toggle('on',on);$('calBtn').setAttribute('aria-expanded',on?'true':'false');if(on)renderCal();}
+  $('calBtn').onclick=function(){setPop(!$('pop').classList.contains('on'))};
+  $('closeCal').onclick=function(){setPop(false);$('calBtn').focus()};
+  $('prev').onclick=function(){vm--;if(vm<0){vm=11;vy--}renderCal()};
+  $('next').onclick=function(){vm++;if(vm>11){vm=0;vy++}renderCal()};
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&$('pop').classList.contains('on')){setPop(false);$('calBtn').focus()}});
+  document.addEventListener('click',function(e){if($('pop').classList.contains('on')&&!$('pop').contains(e.target)&&e.target!==$('calBtn')&&!$('calBtn').contains(e.target)&&!e.target.closest('.day')){setPop(false)}});
+  renderChips();
+
+  // file
+  $('resume').onchange=function(e){var f=e.target.files&&e.target.files[0];st.file=f?f.name:null;st.fileSize=f?f.size:0;$('fileLb').textContent=f?f.name:'파일 선택하기 (PDF 권장)'};
+
+  // submit
+  $('f').onsubmit=function(e){
+    e.preventDefault();
+    var v=function(id){return ($(id).value||'').trim()},miss=[];
+    if(!v('name'))miss.push('이름');if(!v('phone'))miss.push('연락처');
+    if(!v('email')||!$('email').checkValidity())miss.push('이메일');if(!v('intro'))miss.push('자기소개');
+    if(!st.topic)miss.push('나누고 싶은 이야기');if(!st.sel.length)miss.push('가능한 일정');
+    if(!st.times.length)miss.push('선호 시간대');if(!st.mode)miss.push('선호하는 방식');
+    if(!st.file)miss.push('이력서');if(!$('agree').checked)miss.push('개인정보 동의(필수)');
+    if(miss.length){$('err').innerHTML='';var b=document.createElement('b');b.textContent='아직 입력하지 않은 항목이 있어요. ';$('err').appendChild(b);$('err').appendChild(document.createTextNode('('+miss.join(', ')+')'));$('err').classList.add('on');$('err').scrollIntoView({behavior:'smooth',block:'center'});return;}
+    $('err').classList.remove('on');
+    if(st.fileSize>10*1024*1024){$('err').textContent='이력서 파일은 10MB 이하로 첨부해 주세요.';$('err').classList.add('on');return;}
+    var t=TOPICS.filter(function(x){return x.id===st.topic})[0];
+    $('h_subject').value='[커피챗 신청] '+v('name')+' / '+t.cell;
+    $('h_topic').value=t.label;$('h_cell').value=t.cell;
+    $('h_dates').value=st.sel.map(lbl).join(', ');
+    $('h_times').value=st.times.join(', ');$('h_mode').value=st.mode;
+    $('h_agree').value='동의';$('h_pool').value=$('pool').checked?'동의':'미동의';
+    $('h_next').value=location.href.split('?')[0].split('#')[0]+'?done=1';
+    var sb=document.querySelector('.submit');sb.disabled=true;sb.textContent='보내는 중…';
+    $('f').submit();
+  };
+  if(/[?&]done=1/.test(location.search)){$('f').style.display='none';$('done').classList.add('on');}
+})();
+</script>
+</body>
+</html>
