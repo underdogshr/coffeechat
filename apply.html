@@ -116,19 +116,8 @@ footer a{color:#fff}
 <a class="ghost" href="index.html">커피챗 소개로 돌아가기</a>
 </section>
 
-<form id="f" novalidate action="https://formsubmit.co/hr@udimpact.ai" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="_subject" id="h_subject" value="[커피챗 신청]">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" id="h_next" value="">
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-<input type="hidden" name="나누고 싶은 이야기" id="h_topic">
-<input type="hidden" name="담당 셀" id="h_cell">
-<input type="hidden" name="가능한 일정" id="h_dates">
-<input type="hidden" name="선호 시간대" id="h_times">
-<input type="hidden" name="선호 방식" id="h_mode">
-<input type="hidden" name="개인정보 수집·이용 동의" id="h_agree">
-<input type="hidden" name="인재풀 등록 동의" id="h_pool">
+<form id="f" novalidate>
+<input type="text" id="hp" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 <div class="meta"><span>5개 항목만 채우면 끝나요.</span><small><span class="req">*</span> 필수 입력</small></div>
 
 <div class="group">
@@ -182,7 +171,7 @@ footer a{color:#fff}
 <div class="policy">
 <span><b>수집 항목</b> · 이름, 연락처, 이메일, 이력서, 프로필 링크, 신청서 작성 내용</span>
 <span><b>수집 목적</b> · 커피챗 일정 안내 및 진행, 신청자 확인</span>
-<span><b>처리 위탁·국외 이전</b> · 신청서는 메일 전송 서비스 FormSubmit(미국)을 거쳐 hr@udimpact.ai로 전달됩니다.</span>
+<span><b>저장 위치</b> · 신청서와 이력서는 유디임팩트가 사용하는 Google Workspace(구글 시트·드라이브)에 저장됩니다.</span>
 <span><b>보유 기간</b> · [보유기간 입력] 후 지체 없이 파기 (삭제 요청 시 즉시 파기)</span>
 <span style="color:#555">동의를 거부할 수 있으나, 거부 시 커피챗 신청이 제한됩니다.</span>
 </div>
@@ -202,7 +191,8 @@ footer a{color:#fff}
 
 <script>
 (function(){
-  var TO='hr@udimpact.ai';
+  // ▼ 구글 앱스 스크립트 배포 후 받은 웹 앱 URL을 따옴표 안에 붙여 넣으세요
+  var ENDPOINT='https://script.google.com/macros/s/AKfycbzUPjLL-UOjyzhwdiX9I7HCKB1aZQWkBOnpeFpRAo83PmDu3FRNC1ZzZaEsoQZr_11OhQ/exec';
   var st={topic:null,sel:[],times:[],mode:null,file:null,fileSize:0};
   var $=function(id){return document.getElementById(id)};
 
@@ -286,16 +276,33 @@ footer a{color:#fff}
     $('err').classList.remove('on');
     if(st.fileSize>10*1024*1024){$('err').textContent='이력서 파일은 10MB 이하로 첨부해 주세요.';$('err').classList.add('on');return;}
     var t=TOPICS.filter(function(x){return x.id===st.topic})[0];
-    $('h_subject').value='[커피챗 신청] '+v('name')+' / '+t.cell;
-    $('h_topic').value=t.label;$('h_cell').value=t.cell;
-    $('h_dates').value=st.sel.map(lbl).join(', ');
-    $('h_times').value=st.times.join(', ');$('h_mode').value=st.mode;
-    $('h_agree').value='동의';$('h_pool').value=$('pool').checked?'동의':'미동의';
-    $('h_next').value=location.href.split('?')[0].split('#')[0]+'?done=1';
+    if($('hp').value)return;
     var sb=document.querySelector('.submit');sb.disabled=true;sb.textContent='보내는 중…';
-    $('f').submit();
+    var file=$('resume').files[0];
+    var rd=new FileReader();
+    rd.onerror=function(){fail('이력서 파일을 읽지 못했어요. 다른 파일로 다시 시도해 주세요.')};
+    rd.onload=function(){
+      var payload={
+        name:v('name'),phone:v('phone'),email:v('email'),intro:v('intro'),
+        topic:t.label,cell:t.cell,question:v('question'),
+        dates:st.sel.map(lbl).join(', '),times:st.times.join(', '),mode:st.mode,
+        link:v('link'),agree:'동의',pool:$('pool').checked?'동의':'미동의',
+        file:{name:file.name,type:file.type||'application/octet-stream',data:String(rd.result).split(',')[1]}
+      };
+      fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+        .then(function(r){return r.json()})
+        .then(function(res){
+          if(res&&res.ok){$('f').style.display='none';$('done').classList.add('on');window.scrollTo({top:0,behavior:'smooth'});}
+          else fail((res&&res.message)||'신청을 저장하지 못했어요.');
+        })
+        .catch(function(){fail('네트워크 문제로 신청이 전송되지 않았어요.')});
+    };
+    rd.readAsDataURL(file);
   };
-  if(/[?&]done=1/.test(location.search)){$('f').style.display='none';$('done').classList.add('on');}
+  function fail(msg){
+    var sb=document.querySelector('.submit');sb.disabled=false;sb.innerHTML='커피챗 신청하기 <span aria-hidden="true">↗</span>';
+    $('err').textContent=msg+' 잠시 후 다시 시도하시거나 hr@udimpact.ai로 문의해 주세요.';$('err').classList.add('on');
+  }
 })();
 </script>
 </body>
