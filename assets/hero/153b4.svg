@@ -1,0 +1,44 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="3393.25" height="3393.25" viewBox="0 0 3393.25 3393.25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+  /* Uncover the original rim just behind the travelling light. The positions
+     follow the same arc and easing as hero-light-intro.svg. */
+  @media (prefers-reduced-motion: no-preference) {
+    .rim-reveal-window { animation: rim-reveal 2s linear .18s both; }
+    @keyframes rim-reveal {
+      0% { width: 489.44px; }
+      5% { width: 573.15px; }
+      10% { width: 663.67px; }
+      15% { width: 756.04px; }
+      20% { width: 845.02px; }
+      25% { width: 926.74px; }
+      30% { width: 999.28px; }
+      35% { width: 1062.27px; }
+      40% { width: 1116.22px; }
+      45% { width: 1162.01px; }
+      50% { width: 1200.6px; }
+      55% { width: 1225.02px; }
+      75% { width: 1250px; }
+      100% { width: 3393.25px; }
+    }
+  }
+</style>
+<g id="Ellipse 37">
+<path d="M3389.26 1696.63C3389.26 2631.44 2631.44 3389.26 1696.63 3389.26C761.812 3389.26 3.99601 2631.44 3.99601 1696.63C3.99601 761.812 761.812 3.99601 1696.63 3.99601C2631.44 3.99601 3389.26 761.812 3389.26 1696.63Z" fill="url(#paint0_radial_0_9)"/>
+<path d="M3391.25 1696.63C3391.25 2632.54 2632.54 3391.25 1696.63 3391.25C760.709 3391.25 1.99801 2632.54 1.99801 1696.63C1.99801 760.709 760.709 1.99801 1696.63 1.99801C2632.54 1.99801 3391.25 760.709 3391.25 1696.63Z" stroke-width="3.99601" stroke="url(#paint1_linear_0_9)" clip-path="url(#rim-reveal)"/>
+</g>
+<defs>
+<clipPath id="rim-reveal" clipPathUnits="userSpaceOnUse">
+  <rect class="rim-reveal-window" width="3393.25" height="3393.25"/>
+</clipPath>
+<radialGradient id="paint0_radial_0_9" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1256.81 73.6705) rotate(72.2331) scale(835.822)">
+<stop stop-color="#69B2C6"/>
+<stop offset="0.315458" stop-color="#38879C"/>
+<stop offset="0.88" stop-color="#1F687C"/>
+</radialGradient>
+<linearGradient id="paint1_linear_0_9" x1="968.809" y1="253.326" x2="1226.75" y2="41.6472" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1F687C"/>
+<stop offset="0.994803" stop-color="white"/>
+<stop offset="1" stop-color="#1F687C" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

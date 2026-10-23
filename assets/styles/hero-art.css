@@ -1,0 +1,145 @@
+/* Original Figma vector layers, positioned from node 2282:164 at 1440 × 752.398.
+   SVG viewBoxes and their filter padding are preserved. Their own opacities are
+   already baked into the original assets; only the parent group's 90% is added.
+   Container units preserve the original proportions up to a 1700px canvas.
+   Above that width, center the canvas without scaling its vertical coordinates
+   beyond the content-sized hero. */
+.hero-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: 1700px;
+  margin-inline: auto;
+  z-index: -1;
+  pointer-events: none;
+  container-type: inline-size;
+}
+
+.hero-art__wash {
+  position: absolute;
+  inset: 0;
+  opacity: .9;
+}
+
+.hero-art__layer {
+  position: absolute;
+  transform-origin: 0 0;
+}
+
+.hero-art__layer > img {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.hero-art__outer-haze {
+  left: -11.512018840cqw;
+  top: 11.988830566cqw;
+  width: 246.091342502cqw;
+  height: 246.091342502cqw;
+  transform: matrix(0.9927061796188354, 0.12055906653404236, -0.12055906653404236, 0.9927061796188354, 0, 0);
+}
+
+.hero-art__outer-haze > img {
+  left: -2.050174102%;
+  top: -2.050174102%;
+  width: 104.100348204%;
+  height: 104.100348204%;
+}
+
+.hero-art__orbital-glow {
+  left: 130.746866862cqw;
+  top: 6.936658223cqw;
+  width: 74.084472656cqw;
+  height: 109.702648587cqw;
+  transform: matrix(0.14999555051326752, 0.988686740398407, -0.988686740398407, 0.14999555051326752, 0, 0);
+}
+
+.hero-art__orbital-glow > img {
+  left: -7.299924937%;
+  top: -2.315028818%;
+  width: 114.599849875%;
+  height: 104.630057636%;
+}
+
+.hero-art__rim-glow {
+  left: -6.291154226cqw;
+  top: 16.161393060cqw;
+  width: 235.087551541cqw;
+  height: 235.087551541cqw;
+  transform: matrix(0.9927061796188354, 0.12055906653404236, -0.12055906653404236, 0.9927061796188354, 0, 0);
+}
+
+.hero-art__rim-glow > img {
+  left: -1.073170774%;
+  top: -1.073170774%;
+  width: 102.146341548%;
+  height: 102.146341548%;
+}
+
+.hero-art__planet {
+  left: -5.874487559cqw;
+  top: 15.953059726cqw;
+  width: 235.087551541cqw;
+  height: 235.087551541cqw;
+  transform: matrix(0.9927061796188354, 0.12055906653404236, -0.12055906653404236, 0.9927061796188354, 0, 0);
+}
+
+.hero-art__planet > img {
+  left: -0.118000627%;
+  top: -0.118000627%;
+  width: 100.236001254%;
+  height: 100.236001254%;
+}
+
+.hero-art__atmosphere {
+  left: 1.085391574cqw;
+  top: -46.250000000cqw;
+  width: 142.741004096cqw;
+  height: 142.741004096cqw;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.hero-art__atmosphere > img {
+  left: 0.000011165%;
+  top: 0.000011165%;
+  width: 99.999977670%;
+  height: 99.999977670%;
+}
+
+.hero-art__star {
+  left: 77.502237956cqw;
+  top: 29.061186049cqw;
+  width: 2.545828819cqw;
+  height: 2.545828819cqw;
+  transform: matrix(0.9927061796188354, 0.12055906653404236, -0.12055906653404236, 0.9927061796188354, 0, 0);
+}
+
+.hero-art__star > img {
+  left: -39.637092925%;
+  top: -39.637092925%;
+  width: 179.274185850%;
+  height: 179.274185850%;
+}
+
+.hero-art__masked-atmosphere {
+  left: 23.895183139cqw;
+  top: -7.365663317cqw;
+  width: 108.136206733cqw;
+  height: 108.136206733cqw;
+  -webkit-mask-image: url('../hero/26e84.svg');
+  mask-image: url('../hero/26e84.svg');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: -44.948055556cqw 36.620486111cqw;
+  mask-position: -44.948055556cqw 36.620486111cqw;
+  -webkit-mask-size: 235.111250000cqw 235.111250000cqw;
+  mask-size: 235.111250000cqw 235.111250000cqw;
+  mask-mode: alpha;
+}
+
+.hero-art__masked-atmosphere > img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

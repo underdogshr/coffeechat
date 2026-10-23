@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="800" viewBox="0 0 1440 800" fill="none">
+  <title>One-time light trace on the planet rim</title>
+  <style>
+    .trace {
+      stroke-linecap: round;
+      stroke-dasharray: 14 100;
+      stroke-dashoffset: 14;
+      opacity: 0;
+      animation: travel 2s cubic-bezier(.22,.5,.35,1) .18s both;
+    }
+    @keyframes travel {
+      0% { stroke-dashoffset: 14; opacity: 0; }
+      12% { opacity: .7; }
+      72% { opacity: 1; }
+      100% { stroke-dashoffset: -100; opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .trace { animation: none; opacity: 0; }
+    }
+  </style>
+  <defs>
+    <filter id="soft-halo" x="280" y="360" width="950" height="460" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="near-glow" x="280" y="360" width="950" height="460" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+  </defs>
+  <!-- Circle from the original planet layer after its Figma transform:
+       stroke center (1391.634432, 2114.076193), radius 1694.62.
+       The endpoint sits under the center of the existing star glow. -->
+  <path class="trace" pathLength="100" d="M350 777.388251 A1694.62 1694.62 0 0 1 1132.018655 439.460836" stroke="#e8fcff" stroke-width="10" filter="url(#soft-halo)"/>
+  <path class="trace" pathLength="100" d="M350 777.388251 A1694.62 1694.62 0 0 1 1132.018655 439.460836" stroke="#f4fdff" stroke-width="4" filter="url(#near-glow)"/>
+  <path class="trace" pathLength="100" d="M350 777.388251 A1694.62 1694.62 0 0 1 1132.018655 439.460836" stroke="white" stroke-width="1.3"/>
+</svg>

@@ -1,0 +1,54 @@
+/* Play once when the document opens; the final frame is the original artwork.
+   The trace shares .hero-art's capped 1700px coordinate space, including its
+   centered position on ultrawide screens. No scroll or repeating animation. */
+.hero-art__intro-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-art__rim-glow,
+  .hero-art__orbital-glow {
+    animation: hero-rim-arrive 2.65s ease-out both;
+  }
+
+  .hero-art__star {
+    animation: hero-star-arrive 2.65s ease-out both;
+  }
+}
+
+@keyframes hero-rim-arrive {
+  0%, 75% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-star-arrive {
+  0%, 63% {
+    opacity: 0;
+  }
+
+  84% {
+    opacity: .82;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art__intro-light {
+    display: none;
+  }
+}
